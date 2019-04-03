@@ -1,0 +1,22 @@
+#spring
+spring:
+  datasource:
+    url: jdbc:mariadb://duhosf.com:3306/omb?useUnicode=true&characterEncoding=utf8
+    username: skyblue0o0
+    password: hyoming9
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa: 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate: 
+      ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    
+# logging
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+  level:
+    org:
+      hibernate:
+        SQL: debug

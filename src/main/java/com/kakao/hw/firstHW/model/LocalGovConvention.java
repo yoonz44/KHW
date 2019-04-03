@@ -4,15 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import lombok.Data;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(
+			name = "findByLocalGovName",
+			query = " from LocalGovConvention a where a.localGovName = :localGovName"
+			)
+})
 @Data
 public class LocalGovConvention {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	/** 구분 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	/** 지자체명(기관명) */
@@ -22,7 +30,7 @@ public class LocalGovConvention {
 	private String supportedTarget;
 	
 	/** 용도 */
-	private String usage;
+	private String purpose;
 	
 	/** 지원한도 */
 	private String supportedLimit;
