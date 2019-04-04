@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
 import com.kakao.hw.firstHW.service.LocalGovConventionService;
@@ -56,6 +58,16 @@ public class LocalGovConventionController {
 		}
 		
 		return ResponseEntity.ok(localGovConventionService.save(localGovConvention));
+	}
+	
+	@PostMapping("/upload")
+	public ResponseEntity<List<LocalGovConvention>> upload(@RequestParam("file") MultipartFile file) {
+		if (file.isEmpty()) {
+			log.error("empty file");
+			ResponseEntity.badRequest().build();
+		}
+		
+		return ResponseEntity.ok(localGovConventionService.saveAll(file));
 	}
 	
 	@PutMapping("/{id}")

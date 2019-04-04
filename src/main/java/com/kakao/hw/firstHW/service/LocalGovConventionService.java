@@ -7,9 +7,11 @@ import javax.persistence.EntityManagerFactory;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
 import com.kakao.hw.firstHW.repository.LocalGovConventionRepo;
+import com.kakao.hw.util.CsvLoader;
 
 @Service
 public class LocalGovConventionService {
@@ -53,5 +55,9 @@ public class LocalGovConventionService {
 		}
 		
 		return localGovConventionRepo.save(lgConvention);
+	}
+
+	public List<LocalGovConvention> saveAll(MultipartFile multipartFile) {
+		return localGovConventionRepo.saveAll(CsvLoader.loadCsvList(LocalGovConvention.class, multipartFile));
 	}
 }

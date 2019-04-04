@@ -1,5 +1,8 @@
 #spring
-spring:
+spring: 
+  servlet:
+    multipart:
+      enabled: true
   datasource:
     url: jdbc:mariadb://duhosf.com:3306/omb?useUnicode=true&characterEncoding=utf8
     username: skyblue0o0
