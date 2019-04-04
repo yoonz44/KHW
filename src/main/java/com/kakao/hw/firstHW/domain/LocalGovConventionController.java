@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
-import com.kakao.hw.firstHW.model.LocalGovConventionDTO;
 import com.kakao.hw.firstHW.service.LocalGovConventionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,8 +39,13 @@ public class LocalGovConventionController {
 	}
 	
 	@GetMapping("/minRate")
-	public ResponseEntity<List<LocalGovConventionDTO>> findByRewardInterestMinRate() {
+	public ResponseEntity<List<String>> findByRewardInterestMinRate() {
 		return ResponseEntity.ok(localGovConventionService.findByRewardInterestMinRate());
+	}
+	
+	@GetMapping("/supportedLimit/{limit}")
+	public ResponseEntity<List<String>> findLocalGovNameOrderBySupportedLimitDesc(@PathVariable int limit) {
+		return ResponseEntity.ok(localGovConventionService.findLocalGovNameOrderBySupportedLimit(limit));
 	}
 	
 	@PostMapping

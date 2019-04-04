@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import javax.persistence.EntityManagerFactory;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
-import com.kakao.hw.firstHW.model.LocalGovConventionDTO;
 import com.kakao.hw.firstHW.repository.LocalGovConventionRepo;
 
 @Service
@@ -31,8 +31,12 @@ public class LocalGovConventionService {
 		return localGovConventionRepo.findByLocalGovName(localGovName);
 	}
 	
-	public List<LocalGovConventionDTO> findByRewardInterestMinRate() {
+	public List<String> findByRewardInterestMinRate() {
 		return localGovConventionRepo.findByRewardInterestMinRate();
+	}
+	
+	public List<String> findLocalGovNameOrderBySupportedLimit(int limit) {
+		return localGovConventionRepo.findLocalGovNameOrderBySupportedLimit(PageRequest.of(0, limit));
 	}
 	
 	public LocalGovConvention save(LocalGovConvention lgConvention) {
