@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LocalGovConventionService {
+	@Autowired
 	private LocalGovConventionRepo localGovConventionRepo;
 	
 	private SessionFactory sessionFactory;
