@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
+import com.kakao.hw.firstHW.model.LocalGovConventionDTO;
 import com.kakao.hw.firstHW.service.LocalGovConventionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +23,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/lgc")
 @Slf4j
 public class LocalGovConventionController {
-	@Autowired
-	private LocalGovConventionService localGovConventionService;
+	private final LocalGovConventionService localGovConventionService;
+	
+	public LocalGovConventionController(LocalGovConventionService localGovConventionService) {
+		this.localGovConventionService = localGovConventionService;
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<LocalGovConvention>> findAll() {
@@ -34,6 +37,11 @@ public class LocalGovConventionController {
 	@GetMapping("/{localGovName}")
 	public ResponseEntity<List<LocalGovConvention>> findByLocalGovName(@PathVariable String localGovName) {
 		return ResponseEntity.ok(localGovConventionService.findByLocalGovName(localGovName));
+	}
+	
+	@GetMapping("/minRate")
+	public ResponseEntity<List<LocalGovConventionDTO>> findByRewardInterestMinRate() {
+		return ResponseEntity.ok(localGovConventionService.findByRewardInterestMinRate());
 	}
 	
 	@PostMapping

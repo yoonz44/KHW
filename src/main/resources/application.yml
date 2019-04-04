@@ -8,18 +8,9 @@ spring:
   jpa: 
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate: 
-      ddl-auto: create-drop
+      ddl-auto: update
     generate-ddl: true
     show-sql: true
-    
-# logging
-logging:
-  pattern:
-    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
-  level:
-    org:
-      hibernate:
-        SQL: debug
