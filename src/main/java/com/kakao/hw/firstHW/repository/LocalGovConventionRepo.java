@@ -12,11 +12,9 @@ public interface LocalGovConventionRepo extends JpaRepository<LocalGovConvention
 
 	public List<LocalGovConvention> findByLocalGov_name(String localGovName);
 	
-	@Query("SELECT a.localGov.name FROM LocalGovConvention a "
-			+ "WHERE a.rewardInterestMinRate = "
-			+ "(SELECT MIN(b.rewardInterestMinRate) FROM LocalGovConvention b)")
-	public List<String> findByRewardInterestMinRate();
+	@Query("SELECT a.localGov.name FROM LocalGovConvention a ORDER BY a.rewardInterestRate")
+	public List<String> findFirstByRewardInterestMinRate();
 	
-	@Query("SELECT a.localGov.name FROM LocalGovConvention a ORDER BY a.supportedLimit DESC, a.rewardInterestMinRate")
+	@Query("SELECT a.localGov.name FROM LocalGovConvention a ORDER BY a.supportedLimit DESC, a.rewardInterestRate")
 	public List<String> findLocalGovNameOrderBySupportedLimit(Pageable pageable);
 }

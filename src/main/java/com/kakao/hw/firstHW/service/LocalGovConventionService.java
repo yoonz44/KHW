@@ -13,16 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kakao.hw.firstHW.model.LocalGovConvention;
 import com.kakao.hw.firstHW.model.LocalGovConventionDTO;
 import com.kakao.hw.firstHW.repository.LocalGovConventionRepo;
-import com.kakao.hw.firstHW.repository.LocalGovRepo;
 import com.kakao.hw.util.CsvLoader;
 
 @Service
 public class LocalGovConventionService {
 	private final LocalGovConventionRepo localGovConventionRepo;
-	private final LocalGovRepo localGovRepo;
 	
-	public LocalGovConventionService(LocalGovRepo localGovRepo, LocalGovConventionRepo localGovConventionRepo) {
-		this.localGovRepo = localGovRepo;
+	public LocalGovConventionService(LocalGovConventionRepo localGovConventionRepo) {
 		this.localGovConventionRepo = localGovConventionRepo;
 	}
 	
@@ -38,8 +35,24 @@ public class LocalGovConventionService {
 		return entitiesIntoDTOList(localGovConventionRepo.findByLocalGov_name(localGovName));
 	}
 	
+	@Transactional
 	public List<String> findByRewardInterestMinRate() {
-		return localGovConventionRepo.findByRewardInterestMinRate();
+		List<String> tmp = localGovConventionRepo.findFirstByRewardInterestMinRate();
+//		
+//		List<String> result = tmp
+//				.map(vo -> {
+//					LocalGovConvention temp = new LocalGovConvention();
+//					temp.setSupportedLimit(vo.getSupportedLimit().split("~")[0].replace("%", ""));
+//					temp.setLocalGov(vo.getLocalGov());
+//					
+//					return temp;
+//				})
+//				.sorted(Comparator.comparing(LocalGovConvention::getSupportedLimit))
+//				.limit(1)
+//				.map(vo -> vo.getLocalGov().getName())
+//				.collect(Collectors.toList());
+		
+		return tmp;
 	}
 	
 	public List<String> findLocalGovNameOrderBySupportedLimit(int limit) {
@@ -48,18 +61,6 @@ public class LocalGovConventionService {
 	
 	@Transactional
 	public LocalGovConvention save(LocalGovConvention lgConvention) {
-		if (lgConvention.getRewardInterestRate() != null) {
-			String[] tempAry = lgConvention.getRewardInterestRate().split("~");
-			
-			if (tempAry.length > 1) {
-				lgConvention.setRewardInterestMinRate(Double.parseDouble(tempAry[0].replace("%", "")));
-				lgConvention.setRewardInterestMaxRate(Double.parseDouble(tempAry[1].replace("%", "")));
-			} else {
-				lgConvention.setRewardInterestMinRate(Double.parseDouble(tempAry[0].replace("%", "")));
-				lgConvention.setRewardInterestMaxRate(Double.parseDouble(tempAry[0].replace("%", "")));
-			}
-		}
-		
 		return localGovConventionRepo.save(lgConvention);
 	}
 

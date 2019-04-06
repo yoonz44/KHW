@@ -21,7 +21,19 @@ public class CsvLoader {
 		    file.createNewFile();
 			mFile.transferTo(file);
 			
-			CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader();
+//			CsvSchema bootstrapSchema = CsvSchema.emptySchema().withHeader();
+			CsvSchema bootstrapSchema = CsvSchema.builder()
+					.setSkipFirstDataRow(true)
+					.addColumn("code")
+					.addColumn("name")
+					.addColumn("supported")
+					.addColumn("purpose")
+					.addColumn("supportedLimit")
+					.addColumn("rewardInterestRate")
+					.addColumn("recommendedOrgan")
+					.addColumn("managementPoint")
+					.addColumn("handlingPoint")
+					.build();
 			CsvMapper mapper = new CsvMapper();
 			MappingIterator<T> readValues = mapper.readerFor(type).with(bootstrapSchema).readValues(file);
 			
@@ -31,7 +43,5 @@ public class CsvLoader {
 			
 	        return Collections.emptyList();
 		}
-		
 	}
-
 }

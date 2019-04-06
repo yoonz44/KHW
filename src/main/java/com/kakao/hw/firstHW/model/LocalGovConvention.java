@@ -31,12 +31,6 @@ public class LocalGovConvention {
 	/** 이차보전 */
 	private String rewardInterestRate;
 	
-	/** 이차보전 최저 */
-	private double rewardInterestMinRate;
-	
-	/** 이차보전 최대*/
-	private double rewardInterestMaxRate;
-	
 	/** 추천기관 */
 	private String recommendedOrgan;
 	
@@ -90,22 +84,6 @@ public class LocalGovConvention {
 		this.rewardInterestRate = rewardInterestRate;
 	}
 
-	public double getRewardInterestMinRate() {
-		return rewardInterestMinRate;
-	}
-
-	public void setRewardInterestMinRate(double rewardInterestMinRate) {
-		this.rewardInterestMinRate = rewardInterestMinRate;
-	}
-
-	public double getRewardInterestMaxRate() {
-		return rewardInterestMaxRate;
-	}
-
-	public void setRewardInterestMaxRate(double rewardInterestMaxRate) {
-		this.rewardInterestMaxRate = rewardInterestMaxRate;
-	}
-
 	public String getRecommendedOrgan() {
 		return recommendedOrgan;
 	}
@@ -130,9 +108,12 @@ public class LocalGovConvention {
 		this.handlingPoint = handlingPoint;
 	}
 
+	public void setLocalGov(LocalGov localGov) {
+		this.localGov = localGov;
+	}
+
 	public LocalGovConvention(Long id, LocalGov localGov, String supportedTarget, String purpose, String supportedLimit,
-			String rewardInterestRate, double rewardInterestMinRate, double rewardInterestMaxRate,
-			String recommendedOrgan, String managementPoint, String handlingPoint) {
+			String rewardInterestRate, String recommendedOrgan, String managementPoint, String handlingPoint) {
 		super();
 		this.id = id;
 		this.localGov = localGov;
@@ -140,8 +121,6 @@ public class LocalGovConvention {
 		this.purpose = purpose;
 		this.supportedLimit = supportedLimit;
 		this.rewardInterestRate = rewardInterestRate;
-		this.rewardInterestMinRate = rewardInterestMinRate;
-		this.rewardInterestMaxRate = rewardInterestMaxRate;
 		this.recommendedOrgan = recommendedOrgan;
 		this.managementPoint = managementPoint;
 		this.handlingPoint = handlingPoint;
