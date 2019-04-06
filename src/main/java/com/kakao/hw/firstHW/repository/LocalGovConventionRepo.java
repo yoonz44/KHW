@@ -10,13 +10,13 @@ import com.kakao.hw.firstHW.model.LocalGovConvention;
 
 public interface LocalGovConventionRepo extends JpaRepository<LocalGovConvention, Long> {
 
-	public List<LocalGovConvention> findByLocalGovName(String localGovName);
+	public List<LocalGovConvention> findByLocalGov_name(String localGovName);
 	
-	@Query("SELECT a.localGovName FROM LocalGovConvention a "
+	@Query("SELECT a.localGov.name FROM LocalGovConvention a "
 			+ "WHERE a.rewardInterestMinRate = "
 			+ "(SELECT MIN(b.rewardInterestMinRate) FROM LocalGovConvention b)")
 	public List<String> findByRewardInterestMinRate();
 	
-	@Query("SELECT a.localGovName FROM LocalGovConvention a ORDER BY a.supportedLimit DESC, a.rewardInterestMinRate")
+	@Query("SELECT a.localGov.name FROM LocalGovConvention a ORDER BY a.supportedLimit DESC, a.rewardInterestMinRate")
 	public List<String> findLocalGovNameOrderBySupportedLimit(Pageable pageable);
 }

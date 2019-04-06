@@ -1,19 +1,23 @@
 package com.kakao.hw.firstHW.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class LocalGovConvention {
-	/** 구분 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	/** 지자체명(기관명) */
-	private String localGovName;
+	/** 지자체 코드 */
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn
+	private LocalGov localGov;
 	
 	/** 지원대상 */
 	private String supportedTarget;
@@ -50,12 +54,8 @@ public class LocalGovConvention {
 		this.id = id;
 	}
 
-	public String getLocalGovName() {
-		return localGovName;
-	}
-
-	public void setLocalGovName(String localGovName) {
-		this.localGovName = localGovName;
+	public LocalGov getLocalGov() {
+		return localGov;
 	}
 
 	public String getSupportedTarget() {
@@ -128,5 +128,26 @@ public class LocalGovConvention {
 
 	public void setHandlingPoint(String handlingPoint) {
 		this.handlingPoint = handlingPoint;
+	}
+
+	public LocalGovConvention(Long id, LocalGov localGov, String supportedTarget, String purpose, String supportedLimit,
+			String rewardInterestRate, double rewardInterestMinRate, double rewardInterestMaxRate,
+			String recommendedOrgan, String managementPoint, String handlingPoint) {
+		super();
+		this.id = id;
+		this.localGov = localGov;
+		this.supportedTarget = supportedTarget;
+		this.purpose = purpose;
+		this.supportedLimit = supportedLimit;
+		this.rewardInterestRate = rewardInterestRate;
+		this.rewardInterestMinRate = rewardInterestMinRate;
+		this.rewardInterestMaxRate = rewardInterestMaxRate;
+		this.recommendedOrgan = recommendedOrgan;
+		this.managementPoint = managementPoint;
+		this.handlingPoint = handlingPoint;
+	}
+
+	public LocalGovConvention() {
+		super();
 	}
 }

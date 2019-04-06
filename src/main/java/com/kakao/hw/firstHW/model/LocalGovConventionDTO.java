@@ -1,81 +1,61 @@
 package com.kakao.hw.firstHW.model;
 
 public class LocalGovConventionDTO {
-	/** 고유 아이디 */
-	private Long id;
+	private String region;
+	private String target;
+	private String usage;
+	private String limit;
+	private String rate;
+	private String institute;
+	private String mgmt;
+	private String reception;
 	
-	/** 지자체명(기관명) */
-	private String localGovName;
-	
-	/** 지원대상 */
-	private String supportedTarget;
-	
-	/** 용도 */
-	private String purpose;
-	
-	/** 지원한도 */
-	private String supportedLimit;
-	
-	/** 이차보전 */
-	private String rewardInterestRate;
-	
-	/** 추천기관 */
-	private String recommendedOrgan;
-	
-	/** 관리점 */
-	private String managementPoint;
-	
-	/** 취급점 */
-	private String handlingPoint;
-
-	public Long getId() {
-		return id;
+	public String getRegion() {
+		return region;
 	}
-
-	public String getLocalGovName() {
-		return localGovName;
+	public String getTarget() {
+		return target;
 	}
-
-	public String getSupportedTarget() {
-		return supportedTarget;
+	public String getUsage() {
+		return usage;
 	}
-
-	public String getPurpose() {
-		return purpose;
+	public String getLimit() {
+		return limit;
 	}
-
-	public String getSupportedLimit() {
-		return supportedLimit;
+	public String getRate() {
+		return rate;
 	}
-
-	public String getRewardInterestRate() {
-		return rewardInterestRate;
+	public String getInstitute() {
+		return institute;
 	}
-
-	public String getRecommendedOrgan() {
-		return recommendedOrgan;
+	public String getMgmt() {
+		return mgmt;
 	}
-
-	public String getManagementPoint() {
-		return managementPoint;
+	public String getReception() {
+		return reception;
 	}
-
-	public String getHandlingPoint() {
-		return handlingPoint;
+	public void setRegion(String region) {
+		this.region = region;
 	}
-
-	public LocalGovConventionDTO(Long id, String localGovName, String supportedTarget, String purpose,
-			String supportedLimit, String rewardInterestRate, String recommendedOrgan, String managementPoint,
-			String handlingPoint) {
-		super();
-		this.id = id;
-		this.localGovName = localGovName;
-		this.supportedTarget = supportedTarget;
-		this.purpose = purpose;
-		this.supportedLimit = supportedLimit;
-		this.rewardInterestRate = rewardInterestRate;
-		this.recommendedOrgan = recommendedOrgan;
-		this.managementPoint = managementPoint;
-		this.handlingPoint = handlingPoint;
+	public void setTarget(String target) {
+		this.target = target;
+	}
+	public void setUsage(String usage) {
+		this.usage = usage;
+	}
+	public void setLimit(String limit) {
+		this.limit = limit;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
+	}
+	public void setInstitute(String institute) {
+		this.institute = institute;
+	}
+	public void setMgmt(String mgmt) {
+		this.mgmt = mgmt;
+	}
+	public void setReception(String reception) {
+		this.reception = reception;
 	}
 }

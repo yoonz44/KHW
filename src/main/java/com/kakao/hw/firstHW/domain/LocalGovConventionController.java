@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kakao.hw.firstHW.model.LocalGovConvention;
+import com.kakao.hw.firstHW.model.LocalGovConventionDTO;
 import com.kakao.hw.firstHW.service.LocalGovConventionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +32,12 @@ public class LocalGovConventionController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<LocalGovConvention>> findAll() {
+	public ResponseEntity<List<LocalGovConventionDTO>> findAll() {
 		return ResponseEntity.ok(localGovConventionService.findAll());
 	}
 	
 	@GetMapping("/{localGovName}")
-	public ResponseEntity<List<LocalGovConvention>> findByLocalGovName(@PathVariable String localGovName) {
+	public ResponseEntity<List<LocalGovConventionDTO>> findByLocalGovName(@PathVariable String localGovName) {
 		return ResponseEntity.ok(localGovConventionService.findByLocalGovName(localGovName));
 	}
 	
@@ -52,11 +53,6 @@ public class LocalGovConventionController {
 	
 	@PostMapping
 	public ResponseEntity<LocalGovConvention> insert(@Valid @RequestBody LocalGovConvention localGovConvention) {
-		if (localGovConventionService.findById(localGovConvention.getId()).isPresent()) {
-			log.error(localGovConvention.getId() + " is existed");
-			ResponseEntity.badRequest().build();
-		}
-		
 		return ResponseEntity.ok(localGovConventionService.save(localGovConvention));
 	}
 	
